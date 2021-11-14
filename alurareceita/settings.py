@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
-import os
+import os, sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'usuarios',
-    'pessoas',
     'receitas',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -79,7 +78,7 @@ WSGI_APPLICATION = 'alurareceita.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'alura_receitas',
+        'NAME': 'alura_receita',
         'USER': 'postgres',
         'PASSWORD': '12345',
         'HOST': 'localhost'
@@ -134,3 +133,14 @@ DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 # Media
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+# Messages
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+    messages.SUCCESS: 'success',
+}
+
+# App's folder path
+PROJECT_ROOT = os.path.dirname(__file__)
+sys.path.insert(0, os.path.join(PROJECT_ROOT, '../apps'))
